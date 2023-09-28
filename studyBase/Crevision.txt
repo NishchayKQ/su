@@ -1,8 +1,8 @@
-Mole Concept,1,89
-Redox Reaction,1,84
-Gaseous State,1,79
-Solutions,0,79
-IUPAC,0,81
-Solid State,0,80
-GOC,1,53
-Isomerism,0,53
+Mole Concept,1,172
+Redox Reaction,1,167
+Gaseous State,1,162
+Solutions,0,162
+IUPAC,0,164
+Solid State,0,163
+GOC,1,136
+Isomerism,0,136
