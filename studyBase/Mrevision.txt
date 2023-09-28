@@ -1,0 +1,8 @@
+Basic Maths,1,116
+Quadratic Equations,2,60
+Sequences and Series,2,78
+Permutations and Combinations,1,93
+Binomial Theorem,1,92
+Complex Numbers,1,85
+Determinants,0,92
+Matrices,0,92

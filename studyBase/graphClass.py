@@ -38,24 +38,29 @@ class Graph:
     #signifies what one unit means , currently one unit is 3 spaces on x axis and is 3 line for y axis
     self.xSpace = xSpace
     self.scaleX = scaleX
-    self.maximumX = round(max(self.values_onX)/self.scaleX) + 1 #in how many units will it reach max value in values_onX
+    self.maximumX = round(max(self.values_onX)/self.scaleX) #in how many units will it reach max value in values_onX
     self.scaleY=scaleY #one unit is
     self.yLine = yLine #FIXME, this means how much each unit is in terms of lines
     self.maximumY = round(max(self.values_onY)/self.scaleY)
     
     self.Zacolor = Zacolor
     
-    if self.maximumY > Breadth_graph/self.yLine:
-      print("max value of values_onY wont fit with current settings of scaleY. if this looks wrong most likely cuz y values is one greator than required")
-    if self.maximumX > Length_graph/self.xSpace:
-      print("max value of values_onX wont fit with current settings of scaleX. if this looks wrong most likely cuz x values is one greator than required")
+    #if self.maximumY > Breadth_graph/self.yLine:
+      #print("min value of values_onY wont fit with current settings of scaleY. if this looks wrong most likely cuz y values is one greator than required")
+    #if self.maximumX > Length_graph/self.xSpace:
+    #  print("max value of values_onX wont fit with current settings of scaleX. if this looks wrong most likely cuz x values is one greator than required")
     if autoRun: self.graphPlotter()
       
   def graphPlotter(self):
-    self.lisXnY = list(zip(self.values_onY,self.values_onX))
+    #self.lisXnY = list(zip(self.values_onY,self.values_onX))
+    #self.lisXnY.sort(reverse = True)
+    self.lisXnY = list(zip(self.values_onY,list(range(1,len(self.values_onX) + 1))))
     self.lisXnY.sort(reverse = True)
-    i = 1
-    miniCounter = max(self.values_onY)
+    i = 2
+    try:
+      miniCounter = int(str(max(self.values_onY))[:4])
+    except ValueError:
+      miniCounter = float(str(max(self.values_onY))[:4])
     compensator = 0
     shouldIRun_i = False
     gap = self.Breadth_graph - self.maximumY*self.yLine 
@@ -63,16 +68,22 @@ class Graph:
     oldminiCounter = miniCounter
     mesarun = False #way to stop plotting data before the highest number has been printed on y axis
 
-    for ara in range(self.Breadth_graph): #y axis setup 
+    for ara in range(self.Breadth_graph + 1): #y axis setup
+      #breakpoint()
       if shouldIRun_i and (i % self.yLine ==0) :
         print("\n",f"    {miniCounter}"[-5:],sep="",end = "") #5 Characters including i
         mesarun = True
         miniCounter -= self.scaleY
+        try:
+          miniCounter = int((str(miniCounter))[:4])
+        except ValueError:
+          miniCounter = float((str(miniCounter))[:4])
       else:
         print("\n     ",sep ="",end = "") #5 spaces
       print("|",end="")
       if mesarun:
-        to_printX = [round(x/self.scaleX) for y,x in self.lisXnY if y >= (oldminiCounter - 0.00005) ]
+        to_printX = [round((x - min(self.values_onX)) + 1/self.scaleX) for y,x in self.lisXnY if y >= (oldminiCounter - 0.00005)]
+        #breakpoint()
         spaces = " "*self.xSpace
         run = True
         to_printX.sort()
@@ -93,22 +104,23 @@ class Graph:
         
       else:
         i +=1
-      #breakpoint()
-    
+      
     print("\n     |",sep = "",end ="")
     
     for a in range(self.Length_graph): #x axis setup
       print("_" ,sep="",end="")
     
     print("\n     |",sep = "",end="") #5 spaces & 1 character
-    miniCounter = self.scaleX
-    for a in range(self.maximumX):
+    #miniCounter = min(self.values_onX)
+    #for a in range(self.maximumX):
+    for a in self.values_onX:
       print("     |"[-self.xSpace:],end="",sep="")
     
     print("\n      ",sep = "",end="") #6 tab spaces
     
-    for a in range(self.maximumX):
-      print(f"     {miniCounter}"[-self.xSpace:],sep="",end="")
-      miniCounter += self.scaleX
-      
-    print("\ndone")
+    #for a in range(self.maximumX):
+    for a in self.values_onX:
+      #print(f"     {miniCounter}"[-self.xSpace:],sep="",end="")
+      print(f"     {a}"[-self.xSpace:],sep="",end="")
+      #miniCounter += self.scaleX
+    print("")  
