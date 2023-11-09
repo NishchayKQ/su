@@ -6,6 +6,37 @@
 
 from time import localtime, strftime
 import graphClass as gh
+import asyncio
+
+
+async def getJee():
+    import urllib.request as ara
+    import re
+    await ara.urlretrieve("https://jeemain.nta.nic.in/", "Gallias/nta.html")
+    await ara.urlcleanup()
+    with open("Gallias/nta.html") as ntFile:
+        look = ntFile.read()
+
+    whereisUpdated = (re.search("Last Updated: <strong>", look)).end()
+
+    if not whereisUpdated:
+        print("error couldnt find last updated...exiting command")
+    gamma = 0
+    while look[whereisUpdated + gamma] != "<":
+        gamma = gamma + 1
+    date = look[whereisUpdated:whereisUpdated + gamma]
+
+    print(f"\033[38;2;85;85;85mlast updated on {date}\033[0m")
+
+    with open("Gallias/last updated old.txt") as tfFile:
+        oldDate = tfFile.read()
+
+    if oldDate != date:
+        print(
+            "\033[38;2;255;255;0mAlert JEE's website was updated !!!\033[0m")
+
+    with open("Gallias/last updated old.txt", mode="w") as tfFile:
+        tfFile.write(date)
 
 
 def analysis(L1):
@@ -101,6 +132,13 @@ def PlsMulti(show=False, addMultiMode=False, returnerOfWorlds=False):
             tot = tot + float(b)
         return tot
 
+
+def willThisRun():
+    willThisRun.x += 1
+    print(f"i ran {willThisRun.x}th time")
+
+
+willThisRun.x = 0
 
 with open("suBase/studyList.txt") as aFile:
     studyList = aFile.readlines()
@@ -272,9 +310,8 @@ def cmdGiven():
 
             if not studyList:  # true if studyList is empty
                 if not breakList:
-                    # print("ok recorded starting time of break\n") #true if breakList is empty
-                    input(
-                        """if you truly regret 16th march then use today like theres no tomorrow""")
+                    # true if breakList is empty
+                    print("ok recorded starting time of break\n")
 
                 temp = strftime("%H %M", current_time)
                 # new babaBreakSheepList system
@@ -937,8 +974,10 @@ def cmdGiven():
             print("wrong cmd entered, re enter. called from decider else block")
             cmdGiven()
     decider()
+    willThisRun()
 
 
+asyncio.run(getJee())
 cmdGiven()
 whatChanged = (change_inSevenBreakList, change_inSevenStudyList, change_inbreakHourList,
                change_inbreakList, change_instudyHourList, change_inStudyList)
