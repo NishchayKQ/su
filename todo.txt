@@ -1,3 +1,4 @@
-Asynchronous Scraping of iiit website
-
-su should have a attendance tracker
+1)Asynchronous Scraping of iiit website
+2) use json so that we dont have text files everywhere
+3) cleanup code with #bestPractices
+4)su should have a attendance tracker
