@@ -1,4 +1,4 @@
-# waring: Under Major Rework
+# warning: Under Major Rework
 
 # My Study/Break Time Tracker
 ## it can :
