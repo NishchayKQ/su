@@ -1,4 +1,13 @@
-1)Asynchronous Scraping of iiit website
+rejected = del
+done = x
+
+del 1)Asynchronous Scraping of iiit website
 2) use json so that we dont have text files everywhere
 3) cleanup code with #bestPractices
 4)su should have a attendance tracker
+5) put the data files needed in try block and if not found then make em
+6) every x commands ran su.py prints options again
+    maybe use curses to get cursor postion and screen lenght and then 
+    if we r at the end of page print options again
+7) fix babaBreakSheep
+8) see the removed part of options()

@@ -1,2 +1,4 @@
-studyBase_latest
-studyBaseMar_2023
+studyBase/__pycache__
+studyBase/*.txt
+studyBase/suBase/*.txt
+studyBase/Gallias/*.txt
