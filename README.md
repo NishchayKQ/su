@@ -1,3 +1,5 @@
+# waring: Under Major Rework
+
 # My Study/Break Time Tracker
 ## it can :
 ### show graph of past 30 days of your study/break hours
