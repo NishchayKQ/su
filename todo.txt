@@ -11,3 +11,8 @@ del 1)Asynchronous Scraping of iiit website
     if we r at the end of page print options again
 7) fix babaBreakSheep
 8) see the removed part of options()
+9) put all with open() below functions so that they use value in argument
+     and the global value
+10) opps updating from a text file to json format needs removing all the \n
+    detects in place
+note: studyList and study hours list include \n

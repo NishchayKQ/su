@@ -1,4 +1,6 @@
 studyBase/__pycache__
-studyBase/*.txt
-studyBase/suBase/*.txt
-studyBase/Gallias/*.txt
+*.py
+studyBase/*.py
+studyBase/*txt
+studyBase/suBase/*txt
+studyBase/Gallias/*txt
